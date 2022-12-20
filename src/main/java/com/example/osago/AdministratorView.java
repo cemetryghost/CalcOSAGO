@@ -16,15 +16,21 @@ import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/* Класс администратора */
+
 public class AdministratorView implements Initializable {
 
-    public static String agePath = "C:\\Users\\Admin\\IdeaProjects\\OSAGO\\age.txt";
-    public static String citiesPath = "C:\\Users\\Admin\\IdeaProjects\\OSAGO\\cities.txt";
-    public static String driversPath = "C:\\Users\\Admin\\IdeaProjects\\OSAGO\\drivers.txt";
-    public static String kbmPath = "C:\\Users\\Admin\\IdeaProjects\\OSAGO\\kbm.txt";
-    public static String monthsPath = "C:\\Users\\Admin\\IdeaProjects\\OSAGO\\months.txt";
-    public static String powerPath = "C:\\Users\\Admin\\IdeaProjects\\OSAGO\\power.txt";
-    public static String basePath = "C:\\Users\\Admin\\IdeaProjects\\OSAGO\\base.txt";
+    /* Объявление и инициализация объектов, с указанием пути к файлам из папки проекта */
+
+    public static String agePath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\age.txt";
+    public static String citiesPath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\cities.txt";
+    public static String driversPath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\drivers.txt";
+    public static String kbmPath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\kbm.txt";
+    public static String monthsPath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\months.txt";
+    public static String powerPath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\power.txt";
+    public static String basePath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\base.txt";
+
+    /* Объявление и инициализация объектов, с методом  */
 
     public static ObservableList<String> age = pathToList(agePath);
     public static ObservableList<String> cities = pathToList(citiesPath);
@@ -35,18 +41,21 @@ public class AdministratorView implements Initializable {
     public static ObservableList<String> base = pathToList(basePath);
 
     @FXML
-    ComboBox<String> ageCombo, powerCombo, placeCombo, seasonCombo, baseCombo, driversCombo, KBMCombo;
+    ComboBox<String> ageCombo, powerCombo, placeCombo, seasonCombo, baseCombo, driversCombo, KBMCombo; /* Объявляем выпадающие списки, с их id */
+
     @FXML
-    TextField ageField, powerField, placeField, seasonField, baseField, driversField, KBMField;
+    TextField ageField, powerField, placeField, seasonField, baseField, driversField, KBMField; /* Объявляем текстовые поля, с их id */
+
     @FXML
-    Button formulaButton, backButtonAuth;
+    Button formulaButton, backButtonAuth; /* Объявляем кнопки, с их id */
+
+    // Метод
 
     public void Calculate() {
         try{
             if(!placeCombo.getSelectionModel().isEmpty() && !placeField.getText().isEmpty()){
                 /*
-                Получается текст из комбобокса и значение из текстфилда
-                 */
+                Получается текст из комбобокса и значение из текстфилда */
                 String combo = placeCombo.getValue();
                 double field = Double.parseDouble(placeField.getText());
 
@@ -143,9 +152,10 @@ public class AdministratorView implements Initializable {
         }
     }
 
+    // Метод для заполнения всех выпадающих списков объектами коллекции, содержащие пути к файлам
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Заполняются все ComboBox
         placeCombo.getItems().addAll(cities);
         seasonCombo.getItems().addAll(months);
         KBMCombo.getItems().addAll(kbmArray);
@@ -155,8 +165,9 @@ public class AdministratorView implements Initializable {
         baseCombo.getItems().addAll(base);
     }
 
+    // Метод для очистки всех текстовых полей, при изменении администратором коэффициентов
+
     public void clearAllField(){
-        // Очищаются все TextFiled
         ageField.setText("");
         driversField.setText("");
         baseField.setText("");
@@ -178,7 +189,6 @@ public class AdministratorView implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-
         return list;
     }
 
@@ -200,12 +210,14 @@ public class AdministratorView implements Initializable {
         }
     }
 
+    // Метод кнопки, при нажатии происходит закрытие формы администрирования и переход на окно информации по формуле
+
     public void toFormula() throws Exception{
         Stage stageToClose  = (Stage) formulaButton.getScene().getWindow();
         stageToClose.close();
 
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(RoleView.class.getResource("formula-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("formula-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 850, 500);
         stage.setTitle("Formula");
         stage.setScene(scene);
@@ -256,9 +268,14 @@ public class AdministratorView implements Initializable {
         KBMField.setText(text);
     }
 
+    // Метод кнопки, для выхода из приложения
+
     public void Exit() throws Exception{
         System.exit(1);
     }
+
+    // Метод кнопки, для возврата на окно авторизации
+
     @FXML
     void BackButtonAuth() throws Exception{
         Stage stageToClose  = (Stage) backButtonAuth.getScene().getWindow();

@@ -12,37 +12,20 @@ import javax.swing.*;
 
 public class UserView {
     @FXML
-    private TextField ageField;
+    private TextField ageField, experienceField, powerField; // Объявление текстовых полей возраста, стажа и мощности двигателя
 
     @FXML
-    private Button calcButton;
+    private Button calcButton, buttonBackRole; // Объявление кнопок расчета и возврата на предыдущее окно
 
     @FXML
-    private TextField experienceField;
+    private ComboBox<String> kbmMenu, ogranDrivers, registrationMenu, seasonMenu; //Объявление выпадающих списков КБМ, ограничения по водителям, местом регистрации и сезонностью использования ТС
 
     @FXML
-    private ComboBox<String> kbmMenu;
+    private CheckBox taxiCheck; // Объявление флаговой метки, для использования автомобиля в такси
 
-    @FXML
-    private TextField powerField;
-    @FXML
-    private ComboBox<String> ogranDrivers;
-
-    @FXML
-    private ComboBox<String> registrationMenu;
-
-    @FXML
-    private ComboBox<String> seasonMenu;
-
-    @FXML
-    private CheckBox taxiCheck;
-
-    @FXML
-    Button buttonBackRole;
-
-    public static double T;
-    private double TB = 0;
-    private double KO, KS, KBM, KVS, KT, KM;
+    public static double T; // Переменная, которая будет использовать остальные коэффициенты для расчета
+    private double TB = 0; // Объект коэффициента базовой ставки
+    private double KO, KS, KBM, KVS, KT, KM; // Остальные коэффициенты, необходимые для вычисления страхования
 
     @FXML
     void Calculate(){
@@ -52,7 +35,7 @@ public class UserView {
             int power = Integer.parseInt(powerField.getText());
 
             if(age - experience < 18){
-                JOptionPane.showMessageDialog(null, "Ошибка");
+                JOptionPane.showMessageDialog(null, "Ошибка! Проверьте поля возраста и стажа!");
             }
             else{
                 if(taxiCheck.isSelected()){
@@ -77,21 +60,21 @@ public class UserView {
                 KM = getPowerKef(power);
                 KVS = getKefAge(age, experience);
 
-                T = TB * KT * KBM * KVS * KO * KM * KS;
+                T = TB * KT * KBM * KVS * KO * KM * KS; // Главная расчетная формула
 
                 Stage stageToClose = (Stage) calcButton.getScene().getWindow();
                 stageToClose.close();
 
                 Stage stage = new Stage();
-                FXMLLoader fxmlLoader = new FXMLLoader(ResultView.class.getResource("result-view.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("result-view.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(), 850, 500);
-                stage.setTitle("Authorization");
+                stage.setTitle("Result View");
                 stage.setScene(scene);
                 stage.show();
             }
         }
         catch (Exception exception){
-            JOptionPane.showMessageDialog(null, "Поля заполнены некорректно или не все заполнены");
+            JOptionPane.showMessageDialog(null, "Ошибка! Проверьте корректность заполнения всех полей!");
         }
     }
 
@@ -107,7 +90,9 @@ public class UserView {
         for(int i = 0; i < AdministratorView.months.size(); i++){
             seasonMenu.getItems().addAll(AdministratorView.months.get(i).split("\\s{2,100}")[0]);
         }
+
         kbmMenu.getItems().addAll(AdministratorView.kbmArray);
+
         for(int i = 0; i < AdministratorView.drivers.size(); i++){
             ogranDrivers.getItems().addAll(AdministratorView.drivers.get(i).split("\\s{2,100}")[0]);
         }
@@ -194,13 +179,16 @@ public class UserView {
         }
         return result;
     }
+
+    // Метод кнопки, для возвращения на окно выбора роли
+
     @FXML
     void ButtonBackRole() throws Exception{
         Stage stageToClose  = (Stage) buttonBackRole.getScene().getWindow();
         stageToClose.close();
 
         Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(RoleView.class.getResource("role-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("role-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 850, 500);
         stage.setTitle("Role");
         stage.setScene(scene);
