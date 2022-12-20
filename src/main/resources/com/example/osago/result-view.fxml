@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="850.0" style="-fx-background-color: #4682B4;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.osago.ResultView">
+    <children>
+        <AnchorPane layoutX="-8.0" layoutY="103.0" prefHeight="403.0" prefWidth="858.0" style="-fx-background-color: #FFFFFF;">
+            <children>
+                <Label layoutX="186.0" layoutY="36.0" prefHeight="30.0" prefWidth="486.0" text="Приблизительная сумма страхования автомобиля:">
+                    <font>
+                        <Font name="System Italic" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="result" alignment="CENTER" layoutX="315.0" layoutY="77.0" prefHeight="41.0" prefWidth="227.0" text="Label">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font></Label>
+                <Button fx:id="exitButtonUser" layoutX="668.0" layoutY="329.0" mnemonicParsing="false" onAction="#ExitButton" prefHeight="59.0" prefWidth="176.0" style="-fx-background-color: #BC8F8F;" text="Выход">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <Label layoutX="326.0" layoutY="30.0" text="Ингосстрах">
+            <font>
+                <Font name="System Bold Italic" size="33.0" />
+            </font>
+        </Label>
+        <Button fx:id="backButtonUser" layoutX="12.0" layoutY="25.0" mnemonicParsing="false" onAction="#backButton" prefHeight="59.0" prefWidth="176.0" style="-fx-background-color: #BC8F8F;" text="Назад">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+        <Button layoutX="48.0" layoutY="-69.0" mnemonicParsing="false" text="Button" />
+    </children>
+</AnchorPane>

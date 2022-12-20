@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="850.0" style="-fx-background-color: #4682B4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.osago.UserView">
+    <children>
+        <AnchorPane layoutX="-8.0" layoutY="103.0" prefHeight="399.0" prefWidth="858.0" style="-fx-background-color: #FFFFFF;">
+            <children>
+                <Button fx:id="calcButton" layoutX="660.0" layoutY="303.0" mnemonicParsing="false" onAction="#Calculate" prefHeight="59.0" prefWidth="176.0" style="-fx-background-color: #BC8F8F;" text="Рассчитать">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+                <Label layoutX="309.0" layoutY="26.0" text="Заполните поля данными">
+                    <font>
+                        <Font name="System Italic" size="20.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="registrationMenu" layoutX="323.0" layoutY="89.0" prefHeight="43.0" prefWidth="240.0" promptText="Выберите место регистрации" />
+                <TextField fx:id="ageField" layoutX="51.0" layoutY="89.0" prefHeight="43.0" prefWidth="240.0" promptText="Возраст (лет)" />
+                <TextField fx:id="experienceField" layoutX="51.0" layoutY="197.0" prefHeight="43.0" prefWidth="240.0" promptText="Водительский стаж (лет)" />
+                <TextField fx:id="powerField" layoutX="51.0" layoutY="311.0" prefHeight="43.0" prefWidth="240.0" promptText="Мощность двигателя (л.с.) " />
+                <CheckBox fx:id="taxiCheck" layoutX="309.0" layoutY="308.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="334.0" text="Использование автомобиля в качестве такси">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </CheckBox>
+                <ComboBox fx:id="seasonMenu" layoutX="323.0" layoutY="197.0" prefHeight="43.0" prefWidth="240.0" promptText="Выберите сезонность использования авто" />
+                <ComboBox fx:id="kbmMenu" layoutX="596.0" layoutY="197.0" prefHeight="43.0" prefWidth="240.0" promptText="КБМ" />
+                <ComboBox fx:id="ogranDrivers" layoutX="596.0" layoutY="89.0" prefHeight="43.0" prefWidth="240.0" promptText="Ограничения по водителям" />
+            </children>
+        </AnchorPane>
+        <Label layoutX="326.0" layoutY="30.0" text="Ингосстрах">
+            <font>
+                <Font name="System Bold Italic" size="33.0" />
+            </font>
+        </Label>
+        <Button layoutX="48.0" layoutY="-69.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="buttonBackRole" layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#ButtonBackRole" prefHeight="59.0" prefWidth="176.0" style="-fx-background-color: #BC8F8F;" text="Назад">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>

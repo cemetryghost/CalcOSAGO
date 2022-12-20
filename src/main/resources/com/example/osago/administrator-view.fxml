@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="850.0" style="-fx-background-color: #4682B4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.osago.AdministratorView">
+    <children>
+        <AnchorPane layoutX="-8.0" layoutY="103.0" prefHeight="399.0" prefWidth="858.0" style="-fx-background-color: #FFFFFF;">
+            <children>
+                <Button fx:id="formulaButton" layoutX="554.0" layoutY="318.0" mnemonicParsing="false" onAction="#toFormula" prefHeight="55.0" prefWidth="147.0" style="-fx-background-color: #BC8F8F;" text="Формула">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+                <Label layoutX="309.0" layoutY="26.0" text="Окно администрирования">
+                    <font>
+                        <Font name="System Italic" size="20.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="ageCombo" layoutX="37.0" layoutY="71.0" onAction="#getSelectedAge" prefHeight="39.0" prefWidth="170.0" promptText="Возраст и стаж" />
+                <TextField fx:id="ageField" layoutX="37.0" layoutY="124.0" prefHeight="30.0" prefWidth="170.0" promptText="Коэффициент" />
+                <ComboBox fx:id="powerCombo" layoutX="449.0" layoutY="182.0" onAction="#getSelectedPower" prefHeight="39.0" prefWidth="170.0" promptText="Мощность двигателя" />
+                <TextField fx:id="powerField" layoutX="449.0" layoutY="235.0" prefHeight="30.0" prefWidth="170.0" promptText="Коэффициент" />
+                <ComboBox fx:id="placeCombo" layoutX="243.0" layoutY="71.0" onAction="#getSelectedPlace" prefHeight="39.0" prefWidth="170.0" promptText="Место регистрации" />
+                <TextField fx:id="placeField" layoutX="243.0" layoutY="124.0" prefHeight="30.0" prefWidth="170.0" promptText="Коэффициент" />
+                <ComboBox fx:id="seasonCombo" layoutX="37.0" layoutY="185.0" onAction="#getSelectedSeason" prefHeight="39.0" prefWidth="170.0" promptText="Сезонность использования" />
+                <TextField fx:id="seasonField" layoutX="37.0" layoutY="238.0" prefHeight="30.0" prefWidth="170.0" promptText="Коэффициент" />
+                <ComboBox fx:id="baseCombo" layoutX="449.0" layoutY="69.0" onAction="#getSelectedBase" prefHeight="39.0" prefWidth="170.0" promptText="Базовая ставка" />
+                <TextField fx:id="baseField" layoutX="449.0" layoutY="122.0" prefHeight="30.0" prefWidth="170.0" promptText="Коэффициент" />
+                <ComboBox fx:id="driversCombo" layoutX="243.0" layoutY="183.0" onAction="#getSelectedDrivers" prefHeight="39.0" prefWidth="170.0" promptText="Количество водителей" />
+                <TextField fx:id="driversField" layoutX="243.0" layoutY="236.0" prefHeight="30.0" prefWidth="170.0" promptText="Коэффициент" />
+                <ComboBox fx:id="KBMCombo" layoutX="654.0" layoutY="67.0" onAction="#getSelectedKBM" prefHeight="39.0" prefWidth="170.0" promptText="КБМ" />
+                <TextField fx:id="KBMField" layoutX="654.0" layoutY="120.0" prefHeight="30.0" prefWidth="170.0" promptText="Коэффициент" />
+                <Button fx:id="calcButton2" layoutX="236.0" layoutY="318.0" mnemonicParsing="false" onAction="#Calculate" prefHeight="55.0" prefWidth="147.0" style="-fx-background-color: #BC8F8F;" text="Редактировать">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <Button fx:id="exitButton" layoutX="696.0" layoutY="27.0" mnemonicParsing="false" onAction="#Exit" prefHeight="55.0" prefWidth="140.0" style="-fx-background-color: #BC8F8F;" text="Выход">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+        <Label layoutX="326.0" layoutY="30.0" text="Ингосстрах">
+            <font>
+                <Font name="System Bold Italic" size="33.0" />
+            </font>
+        </Label>
+        <Button layoutX="48.0" layoutY="-69.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="backButtonAuth" layoutX="14.0" layoutY="27.0" mnemonicParsing="false" onAction="#BackButtonAuth" prefHeight="55.0" prefWidth="140.0" style="-fx-background-color: #BC8F8F;" text="Назад">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>
