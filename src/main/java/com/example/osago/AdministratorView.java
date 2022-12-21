@@ -30,7 +30,7 @@ public class AdministratorView implements Initializable {
     public static String powerPath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\power.txt";
     public static String basePath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\base.txt";
 
-    /* Объявление и инициализация объектов, с методом  */
+    /* Объявление и инициализация полей, для ComboBox методом чтения и записи файлов  */
 
     public static ObservableList<String> age = pathToList(agePath);
     public static ObservableList<String> cities = pathToList(citiesPath);
@@ -49,24 +49,25 @@ public class AdministratorView implements Initializable {
     @FXML
     Button formulaButton, backButtonAuth; /* Объявляем кнопки, с их id */
 
-    // Метод
+    // Метод редактирования коэффициентов показателей
 
-    public void Calculate() {
-        try{
+    public void Editing() {
+        try{ /* Условная конструкциия - если выбрано место регистрации и поле для коэффициентов не пусто, то выполняется условие */
             if(!placeCombo.getSelectionModel().isEmpty() && !placeField.getText().isEmpty()){
-                /*
-                Получается текст из комбобокса и значение из текстфилда */
+                /* Получаем текст из ComboBox и значение из TextField, и записываем в отдельные переменные */
                 String combo = placeCombo.getValue();
                 double field = Double.parseDouble(placeField.getText());
 
-                String number = combo.split("\\s{2,100}")[1]; // Полученный текст из комбобокса делится на массив по пробелам и берётся 1 индекс, т.е коэффициент
-                String write = combo.replaceAll(number, String.valueOf(field)); // В переменную записывается текст из комбобокса с изменённым коэффициентом
-                int k = placeCombo.getSelectionModel().getSelectedIndex(); // Берётся индекс выбранного из комбобокса текста
+                String coefficient = combo.split("\\s{2,100}")[1]; // Полученный текст ComboBox делится на массив по пробелам (от 2 до 100) и берётся 1 индекс, т.е коэффициент
+                String write = combo.replaceAll(coefficient, String.valueOf(field)); // В переменную записывается текст из ComboBox с изменённым коэффициентом
+                int k = placeCombo.getSelectionModel().getSelectedIndex(); // Берётся индекс выбранного из ComboBox текста
 
-                cities.set(k, write); // В листе под выбранным индексом меняется текста на новый с изменённым коэффициентом
-                placeCombo.getItems().set(k, write); // Комбобокс обновляется с новыми значениями
-                reWrite(citiesPath, cities); // В файл записывается новый изменённый лист
+                cities.set(k, write); // В листе, под выбранным индексом меняется текста на новый с изменённым коэффициентом
+                placeCombo.getItems().set(k, write); // ComboBox обновляется с новыми значениями
+                reWrite(citiesPath, cities); // В файл записывается новый изменённый лист, с помощью метода перезаписи
             }
+
+            // C остальными ComboBox и TextField проводится то же самое, что и с местом регистрации
 
             if(!seasonCombo.getSelectionModel().isEmpty() && !seasonField.getText().isEmpty()){
                 String combo = seasonCombo.getValue();
@@ -145,7 +146,7 @@ public class AdministratorView implements Initializable {
                 ageCombo.getItems().set(k, write);
                 reWrite(agePath, age);
             }
-            clearAllField(); // Очищение всех текстфилдов
+            clearAllField(); // Очищение всех TextField, после нажатия кнопки редактировать
         }
         catch (Exception exception){
             JOptionPane.showMessageDialog(null, "Ошибка");
@@ -177,14 +178,16 @@ public class AdministratorView implements Initializable {
         placeField.setText("");
     }
 
+    // Метод пути к списку, для чтения и записи файлов
+
     public static ObservableList<String> pathToList(String path){
         ObservableList<String> list = FXCollections.observableArrayList(); // Создаётся новый лист
         String line; // Создаётся строка для будущей записи
 
-        // Чтение файла и запись его в
+        // Чтение файла и запись его в лист
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)))){
-            while ((line = br.readLine()) != null) {
-                list.add(line); //
+            while ((line = br.readLine()) != null) { // Читаем пока не конец файла
+                list.add(line); // Записываем
             }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -192,8 +195,10 @@ public class AdministratorView implements Initializable {
         return list;
     }
 
+    // Метод для записи измененного коэффициента в файл
+
     public static void reWrite(String path, ObservableList<String> list){
-        String write = "";
+        String write = ""; // Создается переменная для записи
 
         // Полученный данные из листа записываются в переменную, после чего переходит на другую строку
         for(int i = 0; i < list.size(); i++){
@@ -223,6 +228,8 @@ public class AdministratorView implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    // Методы для отображения коэффициента в текстовом поле, с учетом выбора в выпадающем списке
 
     public void getSelectedPlace() {
         // Берётся индекс полученного элемента

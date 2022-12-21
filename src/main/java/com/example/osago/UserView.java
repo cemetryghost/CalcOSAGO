@@ -10,35 +10,46 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.*;
 
+// Класс пользователя
+
 public class UserView {
     @FXML
-    private TextField ageField, experienceField, powerField; // Объявление текстовых полей возраста, стажа и мощности двигателя
+    TextField ageField, experienceField, powerField; // Объявление текстовых полей возраста, стажа и мощности двигателя
 
     @FXML
-    private Button calcButton, buttonBackRole; // Объявление кнопок расчета и возврата на предыдущее окно
+    Button calcButton, buttonBackRole; // Объявление кнопок расчета и возврата на предыдущее окно
 
     @FXML
-    private ComboBox<String> kbmMenu, ogranDrivers, registrationMenu, seasonMenu; //Объявление выпадающих списков КБМ, ограничения по водителям, местом регистрации и сезонностью использования ТС
+    ComboBox<String> kbmMenu, ogranDrivers, registrationMenu, seasonMenu; //Объявление выпадающих списков КБМ, ограничения по водителям, местом регистрации и сезонностью использования ТС
 
     @FXML
-    private CheckBox taxiCheck; // Объявление флаговой метки, для использования автомобиля в такси
+    CheckBox taxiCheck; // Объявление флаговой метки, для использования автомобиля в такси
 
     public static double T; // Переменная, которая будет использовать остальные коэффициенты для расчета
     private double TB = 0; // Объект коэффициента базовой ставки
     private double KO, KS, KBM, KVS, KT, KM; // Остальные коэффициенты, необходимые для вычисления страхования
 
+    // Метод расчета, при нажатии кнопки "Расчет"
+
     @FXML
     void Calculate(){
         try{
+            // Создаем переменные, и парсим введенные значения в тип int
+
             int age = Integer.parseInt(ageField.getText());
             int experience = Integer.parseInt(experienceField.getText());
             int power = Integer.parseInt(powerField.getText());
+
+            /* Условная конструкция, служащая для корректной проверки полей возраста и стажа
+               Если возраст минус стаж равен меньше 18, то отобразится диалоговое окно с ошибкой
+               Например, если введен возраст 22 и стаж 10 лет - данные не являются возможными
+             */
 
             if(age - experience < 18){
                 JOptionPane.showMessageDialog(null, "Ошибка! Проверьте поля возраста и стажа!");
             }
             else{
-                if(taxiCheck.isSelected()){
+                if(taxiCheck.isSelected()){ // Если нажата флаговая метка, то берем значение из листа ТБ с использованием такси, иначе без использования
                     TB = Double.parseDouble(AdministratorView.base.get(0).split("\\s{2,100}")[1]);
                 }
                 else{
@@ -48,7 +59,7 @@ public class UserView {
                 /*
                 Из листа "drivers" берём элемент под тем индексом, который был выбран в ComboBox.
                 Этот элемент делим на массив, где разделительным знаком является 2 и больше пробелов.
-                Из полученного массива берём элемент с индексом 1.
+                Из полученного массива берём элемент с индексом 1, т.е. коэффициент.
 
                 Такой метод применяется к переменным KO, KS, KBM, KT.
                  */
@@ -57,10 +68,14 @@ public class UserView {
                 KBM = Double.parseDouble(AdministratorView.kbmArray.get(kbmMenu.getSelectionModel().getSelectedIndex()).split("кбм")[1].replaceAll("\\)","").trim());
                 KT = Double.parseDouble(AdministratorView.cities.get(registrationMenu.getSelectionModel().getSelectedIndex()).split("\\s{2,100}")[1]);
 
+                // Мощность автомобиля, возраст и стаж берем из соответствующих методов
+
                 KM = getPowerKef(power);
                 KVS = getKefAge(age, experience);
 
                 T = TB * KT * KBM * KVS * KO * KM * KS; // Главная расчетная формула
+
+                // Если все поля корректны, то при нажатии кнопки закрываем текущее окно и переходим на форму результата
 
                 Stage stageToClose = (Stage) calcButton.getScene().getWindow();
                 stageToClose.close();
@@ -78,9 +93,10 @@ public class UserView {
         }
     }
 
+    // Метод добавления всех значений в СomboBox
+
     @FXML
     void initialize() {
-
         /*
         В ComboBox помещаем значения из листа без индекса.
          */
@@ -91,6 +107,8 @@ public class UserView {
             seasonMenu.getItems().addAll(AdministratorView.months.get(i).split("\\s{2,100}")[0]);
         }
 
+        // Добавление КБМ производится полностью, вместе с индексом, для верного понимания данного значения
+
         kbmMenu.getItems().addAll(AdministratorView.kbmArray);
 
         for(int i = 0; i < AdministratorView.drivers.size(); i++){
@@ -98,8 +116,10 @@ public class UserView {
         }
     }
 
+    // Метод для соответствия введенным занчениям возраста и стажа, с имеющимися в листе значениями для расчета
+
     public static double getKefAge(int age, int experience){
-        double number = 0; // Переменная для ретурна.
+        double number = 0; // Переменная для возврата
         for(int i = 0; i < AdministratorView.age.size(); i++){ // Перебираем массив с возрастом и стажем
             // Если возраст меньше или равен 59, опыт меньше 14 и в выбранном элементе нет слова "больше"
             if(age <= 59 && experience < 14 && !AdministratorView.age.get(i).split(" ")[1].contains("больше")){
@@ -123,7 +143,7 @@ public class UserView {
                 int start = Integer.parseInt(text.split("-")[0]); // Помещается возраст от (16)
                 int end = Integer.parseInt(text.split("-")[1]); // Помещается возраст до (21)
 
-                // Если введённый возраст находится в в диапазоне и после слова "Стаж" есть слово "больше", то берётся коэффициент из этого элемента и возвращается
+                // Если введённый возраст находится в диапазоне и после слова "Стаж" есть слово "больше", то берётся коэффициент из этого элемента и возвращается
                 if(age >= start && age <= end && AdministratorView.age.get(i).split(" ")[3].equals("больше")){
                     number = Double.parseDouble(AdministratorView.age.get(i).split("\\s{2,100}")[1]);
                     return number;
@@ -133,13 +153,13 @@ public class UserView {
             // Если возраст больше или равен 60, опыт меньше или равен 14 и в элементе есть фраза "больше 60"
             else if(age >= 60 && experience <= 14 && AdministratorView.age.get(i).contains("больше 60")){
                 String text = AdministratorView.age.get(i).split(" ")[4]; // Делится строка по пробелам и берётся 4 элемент, который является стажем
-                if(Integer.parseInt(text) == experience){ // Если выбранный стаж равен введённому то берётся коэффициент из этого элемента и возвращается
+                if(Integer.parseInt(text) == experience){ // Если выбранный стаж равен введённому, то берётся коэффициент из этого элемента и возвращается
                     number = Double.parseDouble(AdministratorView.age.get(i).split("\\s{2,100}")[1]);
                     return number;
                 }
             }
 
-            // Если возраст болше 60 и опты больше 14, то берётся последний элемент листа, делится по пробелу в 2 и больше символа и берётся 1 индекс, где написан коэффициент
+            // Если возраст больше 60 и опыт больше 14, то берётся последний элемент листа, делится по пробелу в 2 и больше символа и берётся 1 индекс, где написан коэффициент
             else if(age > 60 && experience > 14){
                 number = Double.parseDouble(AdministratorView.age.get(AdministratorView.age.size() - 1).split("\\s{2,100}")[1]);
                 return number;
@@ -148,29 +168,31 @@ public class UserView {
         return number;
     }
 
+    // Метод соответствия мощности
+
     public static double getPowerKef(int power){
         double result = 0;
 
-        // Если лошадиных сил меньше или равно 50, то берётся первый элемент листа, делится по пробелам и берётся 1 индекс, где коэф
+        // Если лошадиных сил меньше или равно 50, то берётся первый элемент листа, делится по пробелам и берётся 1 индекс, где коэффициент
         if(power <= 50){
             result = Double.parseDouble(AdministratorView.power.get(0).split("\\s{2,100}")[1]);
             return result;
         }
 
-        // Если лошадиных сил больше 150, то берётся последний элемент листа, делится по пробелам и берётся 1 индекс, где коэф
+        // Если лошадиных сил больше 150, то берётся последний элемент листа, делится по пробелам и берётся 1 индекс, где коэффициент
         else if(power > 150){
             result = Double.parseDouble(AdministratorView.power.get(AdministratorView.power.size() - 1).split("\\s{2,100}")[1]);
             return result;
         }
 
-        // Если лошадиные силы в диапазоне от 51 до 151
+        // Если лошадиные силы в диапазоне от 51 до 150
         else if(power <= 150 && power >= 51){
             for(int i = 1; i < AdministratorView.power.size() - 1; i++){ // Перебирается лист
                 String space = AdministratorView.power.get(i).split(" ")[0]; // Элемент делится по пробелам, берётся 0 индекс, где диапазон (50-70)
                 int start = Integer.parseInt(space.split("-")[0]); // Берётся первое число (50)
                 int end = Integer.parseInt(space.split("-")[1]); // Берётся второе число (70)
 
-                // Если силы находятся в этом диапазоне, то элемент делится по большому пробелу и берётся 1 индекс, где коэф
+                // Если силы находятся в этом диапазоне, то элемент делится по большому пробелу и берётся 1 индекс, где коэффициент
                 if(power >= start && power <= end){
                     result = Double.parseDouble(AdministratorView.power.get(i).split("\\s{2,100}")[1]);
                     return result;
