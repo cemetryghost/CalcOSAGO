@@ -22,13 +22,13 @@ public class AdministratorView implements Initializable {
 
     /* Объявление и инициализация объектов, с указанием пути к файлам из папки проекта */
 
-    public static String agePath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\age.txt";
-    public static String citiesPath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\cities.txt";
-    public static String driversPath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\drivers.txt";
-    public static String kbmPath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\kbm.txt";
-    public static String monthsPath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\months.txt";
-    public static String powerPath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\power.txt";
-    public static String basePath = "C:\\Users\\matve\\Downloads\\Telegram Desktop\\jk\\OSAGO\\base.txt";
+    public static String agePath = "files\\age.txt";
+    public static String citiesPath = "files\\cities.txt";
+    public static String driversPath = "files\\drivers.txt";
+    public static String kbmPath = "files\\kbm.txt";
+    public static String monthsPath = "files\\months.txt";
+    public static String powerPath = "files\\power.txt";
+    public static String basePath = "files\\base.txt";
 
     /* Объявление и инициализация полей, для ComboBox методом чтения и записи файлов  */
 

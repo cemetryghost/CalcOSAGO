@@ -11,17 +11,13 @@ import javafx.stage.Stage;
 import javax.swing.*;
 
 // Класс пользователя
-
 public class UserView {
     @FXML
     TextField ageField, experienceField, powerField; // Объявление текстовых полей возраста, стажа и мощности двигателя
-
     @FXML
     Button calcButton, buttonBackRole; // Объявление кнопок расчета и возврата на предыдущее окно
-
     @FXML
     ComboBox<String> kbmMenu, ogranDrivers, registrationMenu, seasonMenu; //Объявление выпадающих списков КБМ, ограничения по водителям, местом регистрации и сезонностью использования ТС
-
     @FXML
     CheckBox taxiCheck; // Объявление флаговой метки, для использования автомобиля в такси
 
@@ -98,7 +94,7 @@ public class UserView {
     @FXML
     void initialize() {
         /*
-        В ComboBox помещаем значения из листа без индекса.
+        В ComboBox помещаем значения из листа.
          */
         for(int i = 0; i < AdministratorView.cities.size(); i++){
             registrationMenu.getItems().addAll(AdministratorView.cities.get(i).split("\\s{2,100}")[0]);
