@@ -204,4 +204,4 @@ Use this space to list resources you find helpful and would like to give credit 
 [JavaFX.io]: https://img.shields.io/badge/-JavaFX-lightgrey
 [JavaFX-url]: https://openjfx.io/
 [Scene Builder.io]: https://img.shields.io/badge/-Scene%20Builder-blue
-[Scene Builder.io]: https://gluonhq.com/products/scene-builder/
+[Scene Builder-url]: https://gluonhq.com/products/scene-builder/
