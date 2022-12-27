@@ -10,7 +10,7 @@
   <p align="center">
     Приложение предназначено для помощи людям, которые хотят узнать приблизительную стоимость страховки автомобиля (ОСАГО)
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/cemetryghost/CalcOSAGO/wiki"><strong>Изучите документацию Wiki</strong></a>
     <br />
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
