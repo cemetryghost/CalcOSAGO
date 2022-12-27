@@ -67,12 +67,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 * [![Java][Java.io]][Java-url] - язык программирования, на котором выполненена разработка.
 * [![JavaFX][JavaFX.io]][JavaFX-url] -  платформа на основе Java для создания приложений с насыщенным графическим интерфейсом.
-* [![Scene Builder][Scene Builder.io]]Scene Builder-url] - это автономное приложение, которое генерирует разметку FXML. 
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![SceneBuilder][SceneBuilder.io]]SceneBuilder-url] - это автономное приложение, которое генерирует разметку FXML. 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -203,5 +198,5 @@ Use this space to list resources you find helpful and would like to give credit 
 [Java-url]: https://www.java.com/ru/
 [JavaFX.io]: https://img.shields.io/badge/-JavaFX-lightgrey
 [JavaFX-url]: https://openjfx.io/
-[Scene Builder.io]: https://img.shields.io/badge/-Scene%20Builder-blue
-[Scene Builder-url]: https://gluonhq.com/products/scene-builder/
+[SceneBuilder.io]: https://img.shields.io/badge/-Scene%20Builder-blue
+[SceneBuilder-url]: https://gluonhq.com/products/scene-builder/
