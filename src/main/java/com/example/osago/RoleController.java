@@ -8,16 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-// Класс контроллер для первоначального окна приложения
-
 public class RoleController {
-
-    // Объявление кнопок администратора и пользователя
 
     @FXML
     private Button adminButton, userButton;
-
-    // Метод кнопки нажатия администратора, закрывает окно выбора роли и открывает форму авторизации
 
     @FXML
     void adminEnter() throws IOException {
@@ -31,8 +25,6 @@ public class RoleController {
         stage.setScene(scene);
         stage.show();
     }
-
-    // Метод кнопки нажатия пользователя, закрывает окно выбора роли и открывает форму пользователя
 
     @FXML
     void userEnter() throws IOException{

@@ -11,11 +11,9 @@ import javafx.stage.Stage;
 
 public class ResultView {
     @FXML
-    Label result; // Элемент, используемый для отображения стоимости ОСАГО
+    Label result;
     @FXML
-    Button backButtonUser; // Кнопка возврата на предыдущее окно приложения
-
-    // Метод кнопки, для закрытия текущего окна и возврата на окно пользователя
+    Button backButtonUser;
 
     @FXML
     void backButton() throws Exception{
@@ -30,14 +28,10 @@ public class ResultView {
         stage.show();
     }
 
-    // Метод кнопки для завершения работы программы
-
     @FXML
     void ExitButton() throws Exception{
         System.exit(1);
     }
-
-    // Метод отображения полученного результат подсчета из класса пользователя
 
     @FXML
     void initialize() {

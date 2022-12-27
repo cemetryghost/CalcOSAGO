@@ -11,9 +11,7 @@ import javafx.stage.Stage;
 public class FormulaView {
 
     @FXML
-    Button backButton; // Объявление кнопки "Назад"
-
-    // Метод, по нажатию кнопки, происходит закрытие текущего окна с информацией по формуле и возрата на окно администрирования
+    Button backButton;
 
     public void goBack() throws Exception{
         Stage stageToClose  = (Stage) backButton.getScene().getWindow();
@@ -26,8 +24,6 @@ public class FormulaView {
         stage.setScene(scene);
         stage.show();
     }
-
-    // Метод, по нажатию кнопки, осуществляется выход из приложения
 
     public void goExit() {
         System.exit(1);

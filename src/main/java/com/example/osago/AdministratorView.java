@@ -16,11 +16,11 @@ import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/* Класс администратора */
+// Класс администратора
 
 public class AdministratorView implements Initializable {
 
-    /* Объявление и инициализация объектов, с указанием пути к файлам из папки проекта */
+    // Объявление и инициализация объектов, с указанием пути к файлам из папки проекта
 
     public static String agePath = "files\\age.txt";
     public static String citiesPath = "files\\cities.txt";
@@ -30,7 +30,7 @@ public class AdministratorView implements Initializable {
     public static String powerPath = "files\\power.txt";
     public static String basePath = "files\\base.txt";
 
-    /* Объявление и инициализация полей, для ComboBox методом чтения и записи файлов  */
+    // Объявление и инициализация полей, для ComboBox методом чтения и записи файлов
 
     public static ObservableList<String> age = pathToList(agePath);
     public static ObservableList<String> cities = pathToList(citiesPath);
@@ -40,6 +40,8 @@ public class AdministratorView implements Initializable {
     public static ObservableList<String> power = pathToList(powerPath);
     public static ObservableList<String> base = pathToList(basePath);
 
+    // Объявление элементов FXML
+
     @FXML
     ComboBox<String> ageCombo, powerCombo, placeCombo, seasonCombo, baseCombo, driversCombo, KBMCombo; /* Объявляем выпадающие списки, с их id */
 
@@ -47,7 +49,7 @@ public class AdministratorView implements Initializable {
     TextField ageField, powerField, placeField, seasonField, baseField, driversField, KBMField; /* Объявляем текстовые поля, с их id */
 
     @FXML
-    Button formulaButton, backButtonAuth; /* Объявляем кнопки, с их id */
+    Button formulaButton, backButtonAuth;
 
     // Метод редактирования коэффициентов показателей
 
@@ -58,8 +60,8 @@ public class AdministratorView implements Initializable {
                 String combo = placeCombo.getValue();
                 double field = Double.parseDouble(placeField.getText());
 
-                String coefficient = combo.split("\\s{2,100}")[1]; // Полученный текст ComboBox делится на массив по пробелам (от 2 до 100) и берётся 1 индекс, т.е коэффициент
-                String write = combo.replaceAll(coefficient, String.valueOf(field)); // В переменную записывается текст из ComboBox с изменённым коэффициентом
+                String number = combo.split("\\s{2,100}")[1]; // Полученный текст ComboBox делится на массив по пробелам (от 2 до 100) и берётся 1 индекс, т.е коэффициент
+                String write = combo.replaceAll(number, String.valueOf(field)); // В переменную записывается текст из ComboBox с изменённым коэффициентом
                 int k = placeCombo.getSelectionModel().getSelectedIndex(); // Берётся индекс выбранного из ComboBox текста
 
                 cities.set(k, write); // В листе, под выбранным индексом меняется текста на новый с изменённым коэффициентом
@@ -153,7 +155,7 @@ public class AdministratorView implements Initializable {
         }
     }
 
-    // Метод для заполнения всех выпадающих списков объектами коллекции, содержащие пути к файлам
+    // Метод для заполнения всех выпадающих списков объектами, содержащие пути к файлам
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -215,8 +217,6 @@ public class AdministratorView implements Initializable {
         }
     }
 
-    // Метод кнопки, при нажатии происходит закрытие формы администрирования и переход на окно информации по формуле
-
     public void toFormula() throws Exception{
         Stage stageToClose  = (Stage) formulaButton.getScene().getWindow();
         stageToClose.close();
@@ -275,13 +275,9 @@ public class AdministratorView implements Initializable {
         KBMField.setText(text);
     }
 
-    // Метод кнопки, для выхода из приложения
-
     public void Exit() throws Exception{
         System.exit(1);
     }
-
-    // Метод кнопки, для возврата на окно авторизации
 
     @FXML
     void BackButtonAuth() throws Exception{
