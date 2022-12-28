@@ -43,10 +43,10 @@ public class AdministratorView implements Initializable {
     // Объявление элементов FXML
 
     @FXML
-    ComboBox<String> ageCombo, powerCombo, placeCombo, seasonCombo, baseCombo, driversCombo, KBMCombo; /* Объявляем выпадающие списки, с их id */
+    ComboBox<String> ageCombo, powerCombo, placeCombo, seasonCombo, baseCombo, driversCombo, KBMCombo;
 
     @FXML
-    TextField ageField, powerField, placeField, seasonField, baseField, driversField, KBMField; /* Объявляем текстовые поля, с их id */
+    TextField ageField, powerField, placeField, seasonField, baseField, driversField, KBMField;
 
     @FXML
     Button formulaButton, backButtonAuth;
