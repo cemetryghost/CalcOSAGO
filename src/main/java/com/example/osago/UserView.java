@@ -91,17 +91,22 @@ public class UserView {
 
     @FXML
     void initialize() {
-        for(int i = 0; i < AdministratorView.cities.size(); i++){
-            registrationMenu.getItems().addAll(AdministratorView.cities.get(i).split("\\s{2,100}")[0]);
-        }
-        for(int i = 0; i < AdministratorView.months.size(); i++){
-            seasonMenu.getItems().addAll(AdministratorView.months.get(i).split("\\s{2,100}")[0]);
-        }
+        try{
+            for(int i = 0; i < AdministratorView.cities.size(); i++){
+                registrationMenu.getItems().addAll(AdministratorView.cities.get(i).split("\\s{2,100}")[0]);
+            }
+            for(int i = 0; i < AdministratorView.months.size(); i++){
+                seasonMenu.getItems().addAll(AdministratorView.months.get(i).split("\\s{2,100}")[0]);
+            }
 
-        kbmMenu.getItems().addAll(AdministratorView.kbmArray);
+            kbmMenu.getItems().addAll(AdministratorView.kbmArray);
 
-        for(int i = 0; i < AdministratorView.drivers.size(); i++){
-            ogranDrivers.getItems().addAll(AdministratorView.drivers.get(i).split("\\s{2,100}")[0]);
+            for(int i = 0; i < AdministratorView.drivers.size(); i++){
+                ogranDrivers.getItems().addAll(AdministratorView.drivers.get(i).split("\\s{2,100}")[0]);
+            }
+        }
+        catch (Exception exception){
+            System.out.println(exception.getMessage());
         }
     }
 

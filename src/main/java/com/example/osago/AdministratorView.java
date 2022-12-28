@@ -159,25 +159,35 @@ public class AdministratorView implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        placeCombo.getItems().addAll(cities);
-        seasonCombo.getItems().addAll(months);
-        KBMCombo.getItems().addAll(kbmArray);
-        driversCombo.getItems().addAll(drivers);
-        powerCombo.getItems().addAll(power);
-        ageCombo.getItems().addAll(age);
-        baseCombo.getItems().addAll(base);
+        try {
+            placeCombo.getItems().addAll(cities);
+            seasonCombo.getItems().addAll(months);
+            KBMCombo.getItems().addAll(kbmArray);
+            driversCombo.getItems().addAll(drivers);
+            powerCombo.getItems().addAll(power);
+            ageCombo.getItems().addAll(age);
+            baseCombo.getItems().addAll(base);
+        }
+        catch (Exception exception){
+            System.out.println(exception.getMessage());
+        }
     }
 
     // Метод для очистки всех текстовых полей, при изменении администратором коэффициентов
 
     public void clearAllField(){
-        ageField.setText("");
-        driversField.setText("");
-        baseField.setText("");
-        powerField.setText("");
-        KBMField.setText("");
-        seasonField.setText("");
-        placeField.setText("");
+        try{
+            ageField.setText("");
+            driversField.setText("");
+            baseField.setText("");
+            powerField.setText("");
+            KBMField.setText("");
+            seasonField.setText("");
+            placeField.setText("");
+        }
+        catch (Exception exception){
+            System.out.println(exception.getMessage());
+        }
     }
 
     // Метод пути к списку, для чтения и записи файлов
@@ -218,15 +228,20 @@ public class AdministratorView implements Initializable {
     }
 
     public void toFormula() throws Exception{
-        Stage stageToClose  = (Stage) formulaButton.getScene().getWindow();
-        stageToClose.close();
+        try{
+            Stage stageToClose  = (Stage) formulaButton.getScene().getWindow();
+            stageToClose.close();
 
-        Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("formula-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 850, 500);
-        stage.setTitle("Formula");
-        stage.setScene(scene);
-        stage.show();
+            Stage stage = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("formula-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 850, 500);
+            stage.setTitle("Formula");
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (Exception exception){
+            System.out.println(exception.getMessage());
+        }
     }
 
     // Методы для отображения коэффициента в текстовом поле, с учетом выбора в выпадающем списке
